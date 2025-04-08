@@ -5,6 +5,7 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "./components/theme-provider";
 import Users from "./pages/users";
 import Models from "./pages/models";
+import Sales from "./pages/sales";
 
 const isAuthenticated = () => true;
 
@@ -41,6 +42,7 @@ export default function Page() {
           {/* Private  routlar (sidebar bilan)*/}
           <Route path="/" element={<PrivateRoute element={<Users />} />} />
           <Route path="/users" element={<PrivateRoute element={<Users />} />} />
+          <Route path="/sales" element={<PrivateRoute element={<Sales />} />} />
           <Route
             path="/models"
             element={<PrivateRoute element={<Models/>} />}
