@@ -2,25 +2,27 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
+  Filler,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import TitleCard from "../shared/Cards/TitleCard";
-// import TitleCard from "../../../components/Cards/TitleCard";
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
+  Filler,
   Legend
 );
 
-function BarChart() {
+function LineChart() {
   const options = {
     responsive: true,
     plugins: {
@@ -44,27 +46,22 @@ function BarChart() {
     labels,
     datasets: [
       {
-        label: "Store 1",
+        fill: true,
+        label: "MAU",
         data: labels.map(() => {
-          return Math.random() * 1000 + 500;
+          return Math.random() * 100 + 500;
         }),
-        backgroundColor: "rgba(255, 99, 132, 1)",
-      },
-      {
-        label: "Store 2",
-        data: labels.map(() => {
-          return Math.random() * 1000 + 500;
-        }),
-        backgroundColor: "rgba(53, 162, 235, 1)",
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
   };
 
   return (
-    <TitleCard title={"Revenue"}>
-      <Bar options={options} data={data} />
+    <TitleCard title={"Montly Active Users (in k)"}>
+      <Line data={data} options={options} />
     </TitleCard>
   );
 }
 
-export default BarChart;
+export default LineChart;

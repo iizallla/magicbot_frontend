@@ -35,17 +35,14 @@ export default function Page() {
     <BrowserRouter>
       <ThemeProvider defaultTheme="light" storageKey="admin-key">
         <Routes>
-          {/* Public Routes (Sidebar siz) */}
           <Route path="/login" element={<h1>Login</h1>} />
           <Route path="/logout" element={<h1>Logout</h1>} />
-          {/* Private  routlar (sidebar bilan)*/}
           <Route path="/" element={<PrivateRoute element={<Users />} />} />
           <Route path="/users" element={<PrivateRoute element={<Users />} />} />
           <Route
             path="/models"
-            element={<PrivateRoute element={<Models/>} />}
+            element={<PrivateRoute element={<Models />} />}
           />
-          {/* 404 Page  */}
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </ThemeProvider>
