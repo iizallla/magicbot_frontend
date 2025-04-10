@@ -11,6 +11,7 @@ import {
   PieChart,
   Send,
   Settings2,
+  ShoppingBasket,
   SquareTerminal,
 } from "lucide-react";
 
@@ -44,6 +45,12 @@ const data = {
       title: "Users",
       url: "/users",
       icon: PersonStanding,
+      isActive: true,
+    },
+    {
+      title: "Sales",
+      url: "/sales",
+      icon: ShoppingBasket,
       isActive: true,
     },
   ],
