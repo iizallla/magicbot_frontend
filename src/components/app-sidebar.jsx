@@ -1,18 +1,5 @@
 import * as React from "react";
-import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  Grip,
-  LifeBuoy,
-  Map,
-  PersonStanding,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { Grip, LifeBuoy, PersonStanding, Send, Store } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
@@ -44,6 +31,12 @@ const data = {
       title: "Users",
       url: "/users",
       icon: PersonStanding,
+      isActive: true,
+    },
+    {
+      title: "Online Shop",
+      url: "/online-shop",
+      icon: Store,
       isActive: true,
     },
   ],
