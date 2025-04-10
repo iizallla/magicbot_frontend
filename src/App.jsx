@@ -6,6 +6,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import Users from "./pages/users";
 import Models from "./pages/models";
 import Sales from "./pages/sales";
+import StoreProducts from "./pages/online-shop/StoreProducts";
 
 const isAuthenticated = () => true;
 
@@ -44,6 +45,10 @@ export default function Page() {
           <Route
             path="/models"
             element={<PrivateRoute element={<Models />} />}
+          />
+          <Route
+            path="/products"
+            element={<PrivateRoute element={<StoreProducts />} />}
           />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>

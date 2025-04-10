@@ -1,5 +1,12 @@
 import * as React from "react";
-import { Grip, LifeBuoy, PersonStanding, Send, Store } from "lucide-react";
+import {
+  Grip,
+  LifeBuoy,
+  PersonStanding,
+  Send,
+  Store,
+  Turtle,
+} from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavProjects } from "@/components/nav-projects";
@@ -26,18 +33,47 @@ const data = {
       title: "Dashboard",
       url: "/models",
       icon: Grip,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
     },
     {
       title: "Users",
       url: "/users",
       icon: PersonStanding,
       isActive: true,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
     },
     {
       title: "Online Shop",
       url: "/online-shop",
       icon: Store,
       isActive: true,
+      isAccardion: true,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+        {
+          title: "Categories",
+          url: "/categories",
+        },
+        {
+          title: "Import",
+          url: "/import/products",
+        },
+      ],
     },
   ],
   navSecondary: [
