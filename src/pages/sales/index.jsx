@@ -1,15 +1,10 @@
-import DemoPage from "@/payment/page";
+
+import { DataTableDemo } from "@/payments/table";
 import { Youtube } from "lucide-react";
 import React from "react";
-"use client"
- 
 
-const Sales 
-= () => {
-    return (
-        <>
-    
-    <div >
+const Sales = () => {
+    return <div >
        <div className="flex justify-between">
         <p>Sales</p>
         <div className="flex gap-4">
@@ -23,13 +18,9 @@ const Sales
                 </svg>
             </button>
         </div>
-        </div> 
-    </div>
-       <div className="rounded-md border mt-8">
-       <DemoPage/>
-     </div>
-     </>
-    )
+        </div>
+        <DataTableDemo/> 
+    </div>;
 
 };
 

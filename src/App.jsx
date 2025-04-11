@@ -55,6 +55,7 @@ export default function Page() {
             path="/sales/settings"
             element={<PrivateRoute element={<SalesSettings />} />}
           />
+           
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </ThemeProvider>
