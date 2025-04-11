@@ -91,6 +91,19 @@ const data = {
       ],
     },
     {
+      title: "Sales",
+      url: "/sales",
+      icon: ShoppingBag,
+      isActive: true,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
+    },
+    {
       title: "Marketing",
       url: "/marketing",
       icon: Percent,
