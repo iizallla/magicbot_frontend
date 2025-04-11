@@ -28,7 +28,6 @@ import {
 import { Link } from "react-router-dom";
 
 export function NavMain({ items }) {
-
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -36,7 +35,7 @@ export function NavMain({ items }) {
         {items.map((item) =>
           item.isAccardion ? (
             <Accordion
-              className="text-sm flex items-center"
+              className="text-sm flex items-center mt-2"
               type="single"
               collapsible
             >
@@ -64,11 +63,11 @@ export function NavMain({ items }) {
             <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.title}>
-                  <Link to={item.url}>
+                  <Link to={item.url} className="mt-2">
                     <div>
                       <item.icon />
                     </div>
-                    <span>{item.title}</span>
+                    <span >{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

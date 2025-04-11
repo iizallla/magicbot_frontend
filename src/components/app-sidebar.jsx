@@ -9,6 +9,9 @@ import {
   ShoppingBag,
   Turtle,
   Star,
+  SquareFunction,
+  ChartNoAxesColumn,
+  HandCoins,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -27,8 +30,8 @@ import {
 
 const data = {
   user: {
-    name: "asad",
-    email: "m@example.com",
+    name: "Ibrohim",
+    email: "example@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   navMain: [
@@ -134,6 +137,73 @@ const data = {
         {
           title: "Settings",
           url: "/sales/settings",
+        },
+      ],
+    },
+    {
+      title: "Loyalty Program",
+      url: "/rewievs",
+      icon: SquareFunction,
+      isActive: true,
+      isAccardion: true,
+      acardionItems: [
+        {
+          title: "Scores",
+          url: "/loyality/scores",
+        },
+        {
+          title: "Analitics",
+          url: "/loyality/analitics",
+        },
+      ],
+    },
+    {
+      title: "Analitics",
+      url: "/rewievs",
+      icon: ChartNoAxesColumn,
+      isActive: true,
+      isAccardion: true,
+      acardionItems: [
+        {
+          title: "Analitics by orders",
+          url: "/loyality/scores",
+        },
+        {
+          title: "Analitics by views",
+          url: "/loyality/analitics",
+        },
+        {
+          title: "Analitics by products",
+          url: "/loyality/analitics",
+        },
+        {
+          title: "Analitics by carts",
+          url: "/loyality/analitics",
+        },
+        {
+          title: "Analitics by search responses",
+          url: "/loyality/analitics",
+        },
+      ],
+    },
+    {
+      title: "Paying system",
+      url: "/rewievs",
+      icon: HandCoins,
+      isActive: true,
+      isAccardion: true,
+      acardionItems: [
+        {
+          title: "Add paying system",
+          url: "/loyality/scores",
+        },
+        {
+          title: "Tranzactions",
+          url: "/loyality/analitics",
+        },
+        {
+          title: "IKPU",
+          url: "/loyality/analitics",
         },
       ],
     },
