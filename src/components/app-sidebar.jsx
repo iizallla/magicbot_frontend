@@ -44,19 +44,6 @@ const data = {
       ],
     },
     {
-      title: "Users",
-      url: "/users",
-      icon: PersonStanding,
-      isActive: true,
-      isAccardion: false,
-      acardionItems: [
-        {
-          title: "Products",
-          url: "/products",
-        },
-      ],
-    },
-    {
       title: "Online Shop",
       url: "/online-shop",
       icon: Store,
