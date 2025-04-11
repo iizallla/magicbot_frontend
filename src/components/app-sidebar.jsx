@@ -95,10 +95,6 @@ const data = {
           url: "/all-sales",
         },
         {
-          title: "Pre-orders",
-          url: "/pre-orders",
-        },
-        {
           title: "Settings",
           url: "/sales/settings",
         },
