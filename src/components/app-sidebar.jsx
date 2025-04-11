@@ -6,6 +6,7 @@ import {
   PersonStanding,
   Send,
   Store,
+  ShoppingBag,
   Turtle,
 } from "lucide-react";
 
@@ -34,6 +35,19 @@ const data = {
       title: "Dashboard",
       url: "/models",
       icon: Grip,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
+    },
+    {
+      title: "Users",
+      url: "/users",
+      icon: PersonStanding,
+      isActive: true,
       isAccardion: false,
       acardionItems: [
         {

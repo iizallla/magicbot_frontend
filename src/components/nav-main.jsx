@@ -28,7 +28,6 @@ import {
 import { Link } from "react-router-dom";
 
 export function NavMain({ items }) {
-  console.log("asdfasd", items.acardionItems);
 
   return (
     <SidebarGroup>
