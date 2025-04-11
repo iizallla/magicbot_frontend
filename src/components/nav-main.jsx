@@ -51,7 +51,7 @@ export function NavMain({ items }) {
                 <AccordionContent>
                   {item.acardionItems.map((i) => {
                     return (
-                      <div className="ml-5">
+                      <div className="ml-12 mt-1 mb-2 text-sm hover:underline">
                         <Link className="pt-2" to={i.url}>
                           {i.title}
                         </Link>

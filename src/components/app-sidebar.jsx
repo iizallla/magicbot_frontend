@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   Grip,
   LifeBuoy,
+  Percent,
   PersonStanding,
   Send,
   Store,
@@ -42,19 +43,6 @@ const data = {
       ],
     },
     {
-      title: "Users",
-      url: "/users",
-      icon: PersonStanding,
-      isActive: true,
-      isAccardion: false,
-      acardionItems: [
-        {
-          title: "Products",
-          url: "/products",
-        },
-      ],
-    },
-    {
       title: "Online Shop",
       url: "/online-shop",
       icon: Store,
@@ -72,6 +60,32 @@ const data = {
         {
           title: "Import",
           url: "/import/products",
+        },
+      ],
+    },
+    {
+      title: "Users",
+      url: "/users",
+      icon: PersonStanding,
+      isActive: true,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
+    },
+    {
+      title: "Marketing",
+      url: "/marketing",
+      icon: Percent,
+      isActive: true,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
         },
       ],
     },
