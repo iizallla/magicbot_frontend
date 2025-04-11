@@ -8,6 +8,7 @@ import {
   Store,
   ShoppingBag,
   Turtle,
+  Star,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -82,11 +83,19 @@ const data = {
       url: "/sales",
       icon: ShoppingBag,
       isActive: true,
-      isAccardion: false,
+      isAccardion: true,
       acardionItems: [
         {
-          title: "Products",
-          url: "/products",
+          title: "All sales",
+          url: "/all-sales",
+        },
+        {
+          title: "Pre-orders",
+          url: "/pre-orders",
+        },
+        {
+          title: "Settings",
+          url: "/sales/settings",
         },
       ],
     },
@@ -95,15 +104,41 @@ const data = {
       url: "/marketing",
       icon: Percent,
       isActive: true,
+      isAccardion: true,
+      acardionItems: [
+        {
+          title: "Promocodes",
+          url: "/marketing/promocodes",
+        },
+        {
+          title: "Text messages",
+          url: "/marketing/messages",
+        },
+      ],
+    },
+    {
+      title: "Reviews",
+      url: "/rewievs",
+      icon: Star,
+      isActive: true,
       isAccardion: false,
       acardionItems: [
         {
-          title: "Products",
-          url: "/products",
+          title: "All sales",
+          url: "/all-sales",
+        },
+        {
+          title: "Pre-orders",
+          url: "/pre-orders",
+        },
+        {
+          title: "Settings",
+          url: "/sales/settings",
         },
       ],
     },
   ],
+
   navSecondary: [
     {
       title: "Support",
