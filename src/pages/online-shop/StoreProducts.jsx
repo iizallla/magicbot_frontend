@@ -7,33 +7,24 @@ function StoreProducts() {
   const [productsNumber, setProductsNumber] = useState(0);
   const [holeItms, setHoleItms] = useState(0);
   const [price, setPrice] = useState(0);
-
-  // Load from localStorage
   useEffect(() => {
     const stored = localStorage.getItem("storeProducts");
     if (stored) {
       setProducts(JSON.parse(stored));
     }
   }, []);
-
-  // Update localStorage & summary stats when products change
   useEffect(() => {
     localStorage.setItem("storeProducts", JSON.stringify(products));
-
     let totalItems = 0;
     let totalPrice = 0;
-
     products.forEach((item) => {
       totalItems += item.items;
       totalPrice += item.price;
     });
-
     setHoleItms(totalItems);
     setPrice(totalPrice);
     setProductsNumber(products.length);
   }, [products]);
-
-  // CREATE
   const addProduct = () => {
     const newProduct = {
       id: Date.now(),
@@ -44,16 +35,12 @@ function StoreProducts() {
     };
     setProducts([...products, newProduct]);
   };
-
-  // DELETE
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       const filtered = products.filter((item) => item.id !== id);
       setProducts(filtered);
     }
   };
-
-  // UPDATE
   const handleUpdate = (id) => {
     const updatedProducts = products.map((item) => {
       if (item.id === id) {
@@ -67,7 +54,6 @@ function StoreProducts() {
     });
     setProducts(updatedProducts);
   };
-
   return (
     <>
       <div className="w-full flex justify-between items-center">
