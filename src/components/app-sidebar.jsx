@@ -5,6 +5,7 @@ import {
   PersonStanding,
   Send,
   Store,
+  ShoppingBag,
   Turtle,
 } from "lucide-react";
 
@@ -53,6 +54,13 @@ const data = {
           url: "/products",
         },
       ],
+    },
+    {
+      title: "Sales",
+      url: "/sales",
+      icon: ShoppingBag,
+      isActive: true,
+      isAccardion: false,
     },
     {
       title: "Online Shop",
