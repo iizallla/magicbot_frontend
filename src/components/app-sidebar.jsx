@@ -12,6 +12,8 @@ import {
   SquareFunction,
   ChartNoAxesColumn,
   HandCoins,
+  Truck,
+  MapPin,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -206,6 +208,22 @@ const data = {
           url: "/loyality/analitics",
         },
       ],
+    },
+    {
+      title: "Delivering methods",
+      url: "/rewievs",
+      icon: Truck,
+      isActive: true,
+      isAccardion: false,
+      acardionItems: [],
+    },
+    {
+      title: "Branches",
+      url: "/branches",
+      icon: MapPin,
+      isActive: true,
+      isAccardion: false,
+      acardionItems: [],
     },
   ],
 
