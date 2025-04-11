@@ -85,7 +85,7 @@ export function SiteHeader() {
 
         <div className="flex justify-end items-center gap-4 ">
           <div className="text-sm font-xl text-white flex gap-4">
-            {["uz", "ru", "en"].map((lang) => (
+            {["uz", "ru", "kir"].map((lang) => (
               <button
                 key={lang}
                 onClick={() => changeLanguage(lang)}

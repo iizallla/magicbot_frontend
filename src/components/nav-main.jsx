@@ -27,7 +27,10 @@ import {
 
 import { Link } from "react-router-dom";
 
+import { useTranslation } from "react-i18next";
+
 export function NavMain({ items }) {
+  const t = useTranslation();
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -67,7 +70,7 @@ export function NavMain({ items }) {
                     <div>
                       <item.icon />
                     </div>
-                    <span >{item.title}</span>
+                    <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
