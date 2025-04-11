@@ -11,8 +11,8 @@ function Models() {
       <div>
         <p className="mb-10">Clients</p>
         <div className="flex justify-between">
-          <UsersInfo title={"Active Users"} number={"0"} />
-          <UsersInfo title={"Non active Users"} number={"0"} />
+          <UsersInfo title={"Active Users"} number={"0"} color={true} />
+          <UsersInfo title={"Non active Users"} number={"0"} color={false} />
           <UsersInfo title={"Uzbek Users"} number={"0"} />
           <UsersInfo title={"Russian Users"} number={"0"} />
         </div>

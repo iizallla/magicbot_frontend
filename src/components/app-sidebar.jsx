@@ -1,18 +1,12 @@
 import * as React from "react";
 import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
   Grip,
   LifeBuoy,
-  Map,
   PersonStanding,
-  PieChart,
   Send,
-  Settings2,
-  ShoppingBasket,
-  SquareTerminal,
+  Store,
+  ShoppingBag,
+  Turtle,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -40,18 +34,54 @@ const data = {
       title: "Dashboard",
       url: "/models",
       icon: Grip,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
     },
     {
       title: "Users",
       url: "/users",
       icon: PersonStanding,
       isActive: true,
+      isAccardion: false,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+      ],
     },
     {
       title: "Sales",
       url: "/sales",
-      icon: ShoppingBasket,
+      icon: ShoppingBag,
       isActive: true,
+      isAccardion: false,
+    },
+    {
+      title: "Online Shop",
+      url: "/online-shop",
+      icon: Store,
+      isActive: true,
+      isAccardion: true,
+      acardionItems: [
+        {
+          title: "Products",
+          url: "/products",
+        },
+        {
+          title: "Categories",
+          url: "/categories",
+        },
+        {
+          title: "Import",
+          url: "/import/products",
+        },
+      ],
     },
   ],
   navSecondary: [
