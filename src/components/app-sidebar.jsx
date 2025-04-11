@@ -92,7 +92,7 @@ const data = {
       acardionItems: [
         {
           title: "All sales",
-          url: "/all-sales",
+          url: "/sales",
         },
         {
           title: "Settings",

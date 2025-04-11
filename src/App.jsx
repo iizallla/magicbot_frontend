@@ -7,6 +7,7 @@ import Users from "./pages/users";
 import Models from "./pages/models";
 import Sales from "./pages/sales";
 import StoreProducts from "./pages/online-shop/StoreProducts";
+import SalesSettings from "./pages/SalesSettings";
 
 const isAuthenticated = () => true;
 
@@ -49,6 +50,10 @@ export default function Page() {
           <Route
             path="/products"
             element={<PrivateRoute element={<StoreProducts />} />}
+          />
+          <Route
+            path="/sales/settings"
+            element={<PrivateRoute element={<SalesSettings />} />}
           />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
