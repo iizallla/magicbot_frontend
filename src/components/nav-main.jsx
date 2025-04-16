@@ -30,7 +30,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 export function NavMain({ items }) {
-  const t = useTranslation();
+  const { t } = useTranslation();
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
@@ -47,7 +47,7 @@ export function NavMain({ items }) {
                   <div className="w-1 h-1 mb-6 ml-2 mr-2">
                     <item.icon />
                   </div>
-                  <AccordionTrigger>{item.title}</AccordionTrigger>
+                  <AccordionTrigger>{t(item.title)}</AccordionTrigger>
                 </div>
                 <AccordionContent>
                   {item.acardionItems.map((i) => {
@@ -70,7 +70,7 @@ export function NavMain({ items }) {
                     <div>
                       <item.icon />
                     </div>
-                    <span>{item.title}</span>
+                    <span>{t(item.title)}</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
