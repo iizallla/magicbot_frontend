@@ -13,7 +13,7 @@ import {
   addProduct,
   updateProduct,
   deleteProduct,
-} from "@/features/products/productsSlice";
+} from "@/features/categories/Categories";
 import { Delete, Pen, Trash, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -21,7 +21,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 
-function StoreProducts() {
+function ProductsCategories() {
   const [videoFile, setVideoFile] = useState(null);
   const [videoPreview, setVideoPreview] = useState("");
   const [salePrice, setSalePrice] = useState(0);
@@ -31,7 +31,7 @@ function StoreProducts() {
   const [profit, setProfit] = useState(0);
   const [margin, setMargin] = useState(0);
   const { t } = useTranslation();
-  const products = useSelector((state) => state.products.list);
+  const categories = useSelector((state) => state.categories.list);
   const dispatch = useDispatch();
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -75,6 +75,7 @@ function StoreProducts() {
       price,
       items,
       imagePreview,
+      date: new Date().toISOString(), // add this line
     };
 
     if (isEditing) {
@@ -186,7 +187,7 @@ function StoreProducts() {
   return (
     <div className="max-w-6xl mx-auto p-6 dark:bg-[#222122] dark:text-white">
       <div className="flex justify-between items-center mb-6  dark:bg-[#222122] dark:text-white">
-        <h1 className="text-2xl font-bold">Добавить продукт</h1>
+        <h1 className="text-2xl font-bold">Категории</h1>
         <button
           className="bg-green-600 text-white px-5 py-2 rounded"
           onClick={() => {
@@ -202,7 +203,7 @@ function StoreProducts() {
             setShowForm(true);
           }}
         >
-          {isEditing ? "Редактировать" : "Добавить продукт"}
+          {isEditing ? "Редактировать" : "Создать категорию"}
         </button>
       </div>
 
@@ -355,7 +356,7 @@ function StoreProducts() {
         </div>
       )}
 
-      {products.length > 0 && (
+      {categories.length > 0 && (
         <div className="shadow-xl rounded p-3  dark:bg-[#222122] dark:text-white">
           <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>
@@ -363,24 +364,27 @@ function StoreProducts() {
               <TableRow>
                 <TableHead className="w-[100px]">Image</TableHead>
                 <TableHead>Title</TableHead>
-                <TableHead>Price</TableHead>
                 <TableHead>Amount</TableHead>
+                <TableHead>Date</TableHead>
                 <TableHead className="text-right">Tools</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {products.map((i) => (
+              {categories.map((i) => (
                 <TableRow key={i.title}>
                   <TableCell className="font-medium">
                     <img
-                      className="w-[50px] h-[50px] object-cover"
+                      className="w-[60px] h-[60px] object-cover"
                       src={i.imagePreview}
                       alt={i.title}
                     />
                   </TableCell>
                   <TableCell className="font-medium">{i.title}</TableCell>
-                  <TableCell>{i.price} so'm</TableCell>
                   <TableCell>{i.items}</TableCell>
+                  <TableCell>
+                    {i.date ? new Date(i.date).toLocaleDateString() : "—"}
+                  </TableCell>
+
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
                       <button
@@ -407,4 +411,4 @@ function StoreProducts() {
   );
 }
 
-export default StoreProducts;
+export default ProductsCategories;

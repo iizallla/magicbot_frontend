@@ -62,7 +62,7 @@ const data = {
         },
         {
           title: "Categories",
-          url: "/categories",
+          url: "/sales/categories",
         },
         {
           title: "Import",
