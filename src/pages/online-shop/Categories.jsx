@@ -3,7 +3,6 @@ import {
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -14,7 +13,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "@/features/categories/Categories";
-import { Delete, Pen, Trash, Trash2 } from "lucide-react";
+import { Delete, Image, Pen, Trash, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
@@ -22,14 +21,6 @@ import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 
 function ProductsCategories() {
-  const [videoFile, setVideoFile] = useState(null);
-  const [videoPreview, setVideoPreview] = useState("");
-  const [salePrice, setSalePrice] = useState(0);
-  const [comparePrice, setComparePrice] = useState(0);
-  const [costPrice, setCostPrice] = useState(0);
-  const [taxable, setTaxable] = useState(false);
-  const [profit, setProfit] = useState(0);
-  const [margin, setMargin] = useState(0);
   const { t } = useTranslation();
   const categories = useSelector((state) => state.categories.list);
   const dispatch = useDispatch();
@@ -38,8 +29,8 @@ function ProductsCategories() {
   const [editingId, setEditingId] = useState(null);
   const [productForm, setProductForm] = useState({
     title: "",
+    status: "",
     description: "",
-    price: "",
     items: "",
     imageFile: null,
     imagePreview: "",
@@ -62,8 +53,8 @@ function ProductsCategories() {
     }
   };
   const handleSave = () => {
-    const { title, description, price, items, imagePreview } = productForm;
-    if (!title || !description || !price || !items || !imagePreview) {
+    const { title, description, imagePreview, status } = productForm;
+    if (!title || !description || !imagePreview || !status) {
       alert("Please fill in all fields.");
       return;
     }
@@ -72,8 +63,6 @@ function ProductsCategories() {
       id: isEditing ? editingId : Date.now(),
       title,
       description,
-      price,
-      items,
       imagePreview,
       date: new Date().toISOString(), // add this line
     };
@@ -106,33 +95,6 @@ function ProductsCategories() {
       dispatch(deleteProduct(id));
     }
   };
-
-  const handleSavee = async () => {
-    if (!title || !description || !price || !items || !imagePreview) {
-      alert("Заполните все обязательные поля.");
-      return;
-    }
-
-    const videoUrl = await uploadVideoToFileIO();
-
-    const newProduct = {
-      id: Date.now(),
-      title,
-      description,
-      price,
-      items,
-      imagePreview,
-      videoUrl,
-      salePrice,
-      comparePrice,
-      costPrice,
-      profit,
-      margin,
-      taxable,
-    };
-
-    setProducts([...products, newProduct]);
-  };
   const resetForm = () => {
     setProductForm({
       title: "",
@@ -146,43 +108,6 @@ function ProductsCategories() {
     setEditingId(null);
     setShowForm(false);
   };
-
-  const handleVideoChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.size <= 50 * 1024 * 1024) {
-      setVideoFile(file);
-      setVideoPreview(URL.createObjectURL(file));
-    } else {
-      alert("Максимальный размер видео — 50MB.");
-    }
-  };
-
-  const uploadVideoToFileIO = async () => {
-    if (!videoFile) return null;
-
-    const formData = new FormData();
-    formData.append("file", videoFile);
-
-    try {
-      const response = await fetch("https://file.io", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      return data.link || null;
-    } catch (error) {
-      console.error("Upload error:", error);
-      return null;
-    }
-  };
-
-  useEffect(() => {
-    const calcProfit = salePrice - costPrice;
-    const calcMargin =
-      salePrice > 0 ? ((calcProfit / salePrice) * 100).toFixed(1) : 0;
-    setProfit(calcProfit);
-    setMargin(calcMargin);
-  }, [salePrice, costPrice]);
 
   return (
     <div className="max-w-6xl mx-auto p-6 dark:bg-[#222122] dark:text-white">
@@ -209,136 +134,83 @@ function ProductsCategories() {
 
       {showForm && (
         <div className="bg-white p-6 border rounded shadow mb-10  dark:bg-[#222122] dark:text-white">
-          <label className="block font-semibold mb-1">Наименование</label>
-          <input
-            name="title"
-            type="text"
-            value={productForm.title}
-            onChange={handleChange}
-            className="dark:placeholder:text-white w-full border px-3 py-2 placeholder:text-black  text-black rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
-            placeholder="Введите наименование"
-          />
-          <label className="block font-semibold mb-1">Описание</label>
-          <ReactQuill
-            theme="snow"
-            value={productForm.description}
-            onChange={(value) =>
-              setProductForm({ ...productForm, description: value })
-            }
-            className="mb-4"
-          />
-          <label className="block font-semibold mb-1">Фото (1080x1440)</label>
-          <input
-            type="file"
-            className="dark:placeholder:text-white placeholder:text-black dark:bg-[#222122] dark:text-white placeholder:text-white"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-          {productForm.imagePreview && (
-            <img
-              src={productForm.imagePreview}
-              alt="Preview"
-              className="mt-2 mb-4 w-40 border rounded"
-            />
-          )}
-
-          <input
-            name="price"
-            type="number"
-            value={productForm.price}
-            onChange={handleChange}
-            className="dark:placeholder:text-white placeholder:text-black w-full border px-3 py-2 rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
-            placeholder="Цена"
-          />
-          <input
-            name="items"
-            type="number"
-            value={productForm.items}
-            onChange={handleChange}
-            className="dark:placeholder:text-white placeholder:text-black w-full border px-3 py-2 rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
-            placeholder="Количество"
-          />
-          <div className="bg-white p-6 border rounded shadow mb-10">
-            <label className="block font-semibold mb-2">📹 Видео</label>
-            <div className="border border-dashed border-gray-400 p-4 rounded mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="space-y-6">
+              <div className="border rounded p-4 flex flex-col items-center text-center">
+                <label className="block font-semibold mb-1">
+                  Фото (1080x1440)
+                </label>
+                <div className="relative w-40 h-40 border border-dashed rounded flex items-center justify-center bg-gray-50">
+                  {productForm.imagePreview ? (
+                    <img
+                      src={productForm.imagePreview}
+                      alt="Preview"
+                      className="w-full h-full object-cover rounded"
+                    />
+                  ) : (
+                    <Image className="w-[160px] h-[120px] text-gray-500" />
+                  )}
+                  <label
+                    htmlFor="image-upload"
+                    className="absolute top-1 right-1 bg-white p-1 rounded-full shadow cursor-pointer"
+                  >
+                    <Pen className="w-4 h-4 text-gray-600" />
+                  </label>
+                  <input
+                    id="image-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  Принимаются только файлы изображений *.png, *.jpg и *.jpeg
+                  размером не более 2 мегабайт.
+                </p>
+              </div>
+              <div className="mt-4 border p-4 rounded mb-6">
+                <label className="block font-semibold mb-1">Статус</label>
+                <div className="flex items-center gap-2">
+                  <span className="h-3 w-3 rounded-full bg-green-500 inline-block" />
+                  <select
+                    className="border rounded px-3 py-2"
+                    value={productForm.status || "active"}
+                    onChange={(e) =>
+                      setProductForm({ ...productForm, status: e.target.value })
+                    }
+                  >
+                    <option value="active">Активный</option>
+                    <option value="inactive">Неактивный</option>
+                  </select>
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Установите статус категории.
+                </p>
+              </div>
+            </div>
+            <div className="md:col-span-2 space-y-6">
+              <label className="block font-semibold mb-1">Наименование</label>
               <input
-                type="file"
-                accept="video/mp4"
-                onChange={handleVideoChange}
+                name="title"
+                type="text"
+                value={productForm.title}
+                onChange={handleChange}
+                className="dark:placeholder:text-white w-full border px-3 py-2 placeholder:text-black  text-black rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
+                placeholder="Введите наименование"
               />
-              <p className="text-sm text-gray-600 mt-2">
-                Рекомендуемый формат: MP4, максимальный размер:{" "}
-                <strong>50MB</strong>
-              </p>
-              {videoPreview && (
-                <video
-                  src={videoPreview}
-                  controls
-                  className="mt-4 rounded shadow w-full max-w-md"
-                />
-              )}
-            </div>
-
-            <h3 className="text-lg font-semibold mt-6 mb-2">Цены</h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label>Цена продажи</label>
-                <input
-                  type="number"
-                  value={salePrice}
-                  onChange={(e) => setSalePrice(Number(e.target.value))}
-                  className="w-full border px-3 py-2 rounded"
-                />
-              </div>
-              <div>
-                <label>Цена сравнения</label>
-                <input
-                  type="number"
-                  value={comparePrice}
-                  onChange={(e) => setComparePrice(Number(e.target.value))}
-                  className="w-full border px-3 py-2 rounded"
-                />
-              </div>
-              <div className="col-span-2 flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={taxable}
-                  onChange={(e) => setTaxable(e.target.checked)}
-                />
-                <label>Взимать налог с этого товара</label>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-3 gap-4 mt-4">
-              <div>
-                <label>Цена прихода</label>
-                <input
-                  type="number"
-                  value={costPrice}
-                  onChange={(e) => setCostPrice(Number(e.target.value))}
-                  className="w-full border px-3 py-2 rounded"
-                />
-              </div>
-              <div>
-                <label>Прибыль</label>
-                <input
-                  type="number"
-                  value={profit.toFixed(10)}
-                  readOnly
-                  className="w-full border bg-gray-100 px-3 py-2 rounded"
-                />
-              </div>
-              <div>
-                <label>Маржа</label>
-                <input
-                  type="text"
-                  value={`${margin}%`}
-                  readOnly
-                  className="w-full border bg-gray-100 px-3 py-2 rounded"
-                />
-              </div>
+              <label className="block font-semibold mb-1">Описание</label>
+              <ReactQuill
+                theme="snow"
+                value={productForm.description}
+                onChange={(value) =>
+                  setProductForm({ ...productForm, description: value })
+                }
+                className="mb-4"
+              />
             </div>
           </div>
+
           <div className="flex gap-4">
             <button
               onClick={handleSave}
@@ -355,7 +227,6 @@ function ProductsCategories() {
           </div>
         </div>
       )}
-
       {categories.length > 0 && (
         <div className="shadow-xl rounded p-3  dark:bg-[#222122] dark:text-white">
           <Table>
@@ -364,7 +235,6 @@ function ProductsCategories() {
               <TableRow>
                 <TableHead className="w-[100px]">Image</TableHead>
                 <TableHead>Title</TableHead>
-                <TableHead>Amount</TableHead>
                 <TableHead>Date</TableHead>
                 <TableHead className="text-right">Tools</TableHead>
               </TableRow>
@@ -380,7 +250,6 @@ function ProductsCategories() {
                     />
                   </TableCell>
                   <TableCell className="font-medium">{i.title}</TableCell>
-                  <TableCell>{i.items}</TableCell>
                   <TableCell>
                     {i.date ? new Date(i.date).toLocaleDateString() : "—"}
                   </TableCell>
@@ -395,7 +264,7 @@ function ProductsCategories() {
                       </button>
                       <button
                         onClick={() => handleDelete(i.id)}
-                        className="text-red-500 gap-1 flex items-center text-white px-4 py-1 rounded"
+                        className="text-red-500 gap-1 flex items-center px-4 py-1 rounded"
                       >
                         <Trash2 className="w-4 h-4" /> Удалить
                       </button>

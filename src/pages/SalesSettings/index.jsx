@@ -1,7 +1,7 @@
 function SalesSettings() {
   return (
     <>
-      <p></p>
+      <p>jhjhjvljhv</p>
     </>
   );
 }
