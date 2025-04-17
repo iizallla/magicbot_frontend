@@ -14,12 +14,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslation } from "react-i18next";
 
 
 const Sales = () => {
+    const {t}=useTranslation()
     return <div >
         <div className="flex justify-between">
-            <p>Sales</p>
+            <p>
+                {t('sales')}
+            </p>
             <div className="flex gap-4">
                 {/* <div className="flex items-center gap-2 bg-blue-500 w-[140px] h-[40px] rounded-lg pl-2 hover:bg-blue-800">
                 <Youtube className="w-[15px] h-[18px] text-white "></Youtube>

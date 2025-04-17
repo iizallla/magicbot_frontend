@@ -1,3 +1,18 @@
 {
-  "Clients": "Mijozlar"
+  "Clients": "Mijozlar",
+  "Created":"Yaratilga",
+  "Status":"Status",
+  "Name":"Ism",
+  "FinancialStatus":"Moliyaviy Ahvol",
+  "DeliveryType":"Yetkazib berish turi",
+  "Amount":"miqdori",
+  "success":"muvafaqqiyatli",
+  "failed":"muvaffaqiyatsiz",
+  "processing":"qayta ishlash",
+  "Reset":"qayta tiklash",
+  "new":"Yangi",
+  "accept":"qabul qilish",
+  "Columns":"ustunlar",
+  "sales":"sotuv"
 }
+

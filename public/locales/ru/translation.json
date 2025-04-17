@@ -1,3 +1,17 @@
 {
-  "Clients": "Клиенты"
+  "Clients": "Клиенты",
+  "Created":"Созданный",
+  "Status":"Статус",
+  "Name":"Имя",
+  "FinancialStatus":"Финансовое положение",
+  "DeliveryType":"Тип доставки",
+  "Amount":"Сумма",
+  "success":"успех",
+  "failed":"провалившийся",
+  "processing":"обработка",
+  "Reset":" Сброс",
+  "new":"новое",
+  "accept":"принимать",
+  "Columns":"Столбцы",
+  "sales":"продажи"
 }
