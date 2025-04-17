@@ -47,42 +47,34 @@ import {
 
 const data = [
   {
-    id: "m5gr84i9",
-    numberOfOrder: "#1341335in",
-
+    id: "1",
     amount: 316,
     status: "success",
-    email: "ken99@example.com",
+    name:"Bakhriddinxoja",
+    financialStatus:"in anticipation",
+    deliveryType:"new",
+    created:"22.08.2023",
   },
   {
-    id: "3u1reuv4",
-    numberOfOrder: "#1341335in",
-
-    amount: 242,
-    status: "success",
-    email: "Abe45@example.com",
-  },
-  {
-    id: "derv1ws0",
-    numberOfOrder: "#1341335in",
-
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@example.com",
-  },
-  {
-    id: "5kma53ae",
-    numberOfOrder: "#1341335in",
-    amount: 874,
-    status: "success",
-    email: "Silas22@example.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
+    id: "2",
+    amount: 574,
     status: "failed",
-    email: "carmella@example.com",
+    name:"Abdulfattoh",
+    financialStatus:"in anticipation",
+    deliveryType:"new",
+    created:"31.09.2023",
   },
+  {
+    id: "3",
+    amount: 5964,
+    status: "processing",
+    name:"Abdulfattoh",
+    financialStatus:"in anticipation",
+    deliveryType:"accept",
+    created:"5.09.2022",
+  },
+  
+
 
 ];
 
@@ -95,6 +87,13 @@ export const columns = [
     enableHiding: false,
   },
   {
+    accessorKey: "created",
+    header: "created",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("created")}</div>
+    ),
+  },
+  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
@@ -102,34 +101,50 @@ export const columns = [
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+           variant="ghost"
+           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
-          <ArrowUpDown />
+         Name
+          
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "numberOfOrders",
+    accessorKey: "financialStatus",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Number Of Orders
-          <ArrowUpDown />
+          financialStatus
+         
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("numberOfOrders")}</div>,
+    cell: ({ row }) => <div className="lowercase">{row.getValue("financialStatus")}</div>,
+  },
+ 
+  {
+    accessorKey: "deliveryType",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+       Delivery Type
+          
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="lowercase">{row.getValue("deliveryType")}</div>,
   },
   {
     accessorKey: "amount",
@@ -214,10 +229,10 @@ export function DataTableDemo() {
     <div className="w-full">
       <div className="flex items-center py-4 justify-between">
         <Input
-          placeholder="Filter emails and id..."
-          value={table.getColumn("email")?.getFilterValue() ?? ""}
+          placeholder="Filter name and id..."
+          value={table.getColumn("id")?.getFilterValue() ?? ""}
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table.getColumn("id")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
