@@ -1,13 +1,3 @@
 {
-  "Dashboard": "Админ панель",
-  "Online Shop": "Онлайн магазин",
-  "Users": "Пользователи",
-  "Sales": "Продажи",
-  "Marketing": "Маркетинг",
-  "Reviews": "Отзывы",
-  "Loyalty Program": "Программа лояльности",
-  "Analitics": "Аналитика",
-  "Paying system": "Платежная система",
-  "Delivering methods": "Способы доставки",
-  "Branches": "Филиалы"
+  "Clients": "Клиенты"
 }

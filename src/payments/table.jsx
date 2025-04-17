@@ -1,6 +1,14 @@
-"use client";
-
 import * as React from "react";
+import FilterIcon from '../assets/filter.png'
+import { useState } from 'react';
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import {
   //   ColumnDef,
   //   ColumnFiltersState,
@@ -36,59 +44,53 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-// const data = [
-//   {
-//     id: "m5gr84i9",
-//     amount: 316,
-//     status: "success",
-//     email: "ken99@example.com",
-//   },
-//   {
-//     id: "3u1reuv4",
-//     amount: 242,
-//     status: "success",
-//     email: "Abe45@example.com",
-//   },
-//   {
-//     id: "derv1ws0",
-//     amount: 837,
-//     status: "processing",
-//     email: "Monserrat44@example.com",
-//   },
-//   {
-//     id: "5kma53ae",
-//     amount: 874,
-//     status: "success",
-//     email: "Silas22@example.com",
-//   },
-//   {
-//     id: "bhqecj4p",
-//     amount: 721,
-//     status: "failed",
-//     email: "carmella@example.com",
-//   },
-// ];
+
+const data = [
+  {
+    id: "m5gr84i9",
+    numberOfOrder: "#1341335in",
+
+    amount: 316,
+    status: "success",
+    email: "ken99@example.com",
+  },
+  {
+    id: "3u1reuv4",
+    numberOfOrder: "#1341335in",
+
+    amount: 242,
+    status: "success",
+    email: "Abe45@example.com",
+  },
+  {
+    id: "derv1ws0",
+    numberOfOrder: "#1341335in",
+
+    amount: 837,
+    status: "processing",
+    email: "Monserrat44@example.com",
+  },
+  {
+    id: "5kma53ae",
+    numberOfOrder: "#1341335in",
+    amount: 874,
+    status: "success",
+    email: "Silas22@example.com",
+  },
+  {
+    id: "bhqecj4p",
+    amount: 721,
+    status: "failed",
+    email: "carmella@example.com",
+  },
+
+];
 
 export const columns = [
   {
     id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
-    ),
+    header: ({ row }) => "ID",
+    cell: ({ row }) =>"# "+Number(Number(row.id)+1),
     enableSorting: false,
     enableHiding: false,
   },
@@ -115,10 +117,27 @@ export const columns = [
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
+    accessorKey: "numberOfOrders",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Number Of Orders
+          <ArrowUpDown />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="lowercase">{row.getValue("numberOfOrders")}</div>,
+  },
+  {
     accessorKey: "amount",
     header: () => <div className="text-right">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
+
+      // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
@@ -157,8 +176,10 @@ export const columns = [
     },
   },
 ];
-
-export function DataTableDemo({ data }) {
+export default function () {
+  const [tableStatus, setTableStatus] = useState('#');
+}
+export function DataTableDemo() {
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState([]);
@@ -183,46 +204,65 @@ export function DataTableDemo({ data }) {
     },
   });
 
+  const onSalesFilterChange = (value) => {
+    let a=  data.filter((item,index)=>item.status.includes(value))
+    console.log(a);
+    
+  }
+
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 justify-between">
         <Input
-          placeholder="Filter emails..."
+          placeholder="Filter emails and id..."
           value={table.getColumn("email")?.getFilterValue() ?? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex gap-5">
+          <Select onValueChange={onSalesFilterChange}>
+            <SelectTrigger className="w-[80px]">
+              <img src={FilterIcon} className="w-5 h-5 object-contain" alt="filter" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="success">Success</SelectItem>
+              <SelectItem value="processing">Processing</SelectItem>
+              <SelectItem value="failed">Failed</SelectItem>
+              <SelectItem value="#">Reset</SelectItem>
+            </SelectContent>
+          </Select>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="ml-auto">
+                Columns <ChevronDown />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  );
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
-      <div className="rounded-md border">
-        <Table>
+      <div id="table_sales_list" className="rounded-md border">
+        <Table >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -232,9 +272,9 @@ export function DataTableDemo({ data }) {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}

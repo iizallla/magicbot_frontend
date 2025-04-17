@@ -1,13 +1,3 @@
 {
-  "Dashboard": "Admin Panel",
-  "Online Shop": "Onlayn Do'kon",
-  "Users": "Foydalanuvchilar",
-  "Sales": "Sotuvlar",
-  "Marketing": "Marketing",
-  "Reviews": "Sharhlar",
-  "Loyalty Program": "Sodiqlik dasturi",
-  "Analitics": "Tahlillar",
-  "Paying system": "To'lov tizimi",
-  "Delivering methods": "Yetkazib berish usullari",
-  "Branches": "Filiallar"
+  "Clients": "Mijozlar"
 }
