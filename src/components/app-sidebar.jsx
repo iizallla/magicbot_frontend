@@ -242,7 +242,7 @@ export function AppSidebar({ ...props }) {
   const { t } = useTranslation();
   return (
     <Sidebar
-      className="top-[--header-height] !h-[calc(100svh-var(--header-height))]"
+      className="top-[--header-height] !h-[calc(100svh-var(--header-height))] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-rounded"
       {...props}
     >
       <SidebarHeader>

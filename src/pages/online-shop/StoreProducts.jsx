@@ -1,3 +1,4 @@
+import { Switch } from "@/components/ui/switch";
 import {
   Table,
   TableBody,
@@ -14,6 +15,7 @@ import {
   updateProduct,
   deleteProduct,
 } from "@/features/products/productsSlice";
+
 import { Delete, Pen, Trash, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -365,6 +367,7 @@ function StoreProducts() {
                 <TableHead>Title</TableHead>
                 <TableHead>Price</TableHead>
                 <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
                 <TableHead className="text-right">Tools</TableHead>
               </TableRow>
             </TableHeader>
@@ -381,6 +384,9 @@ function StoreProducts() {
                   <TableCell className="font-medium">{i.title}</TableCell>
                   <TableCell>{i.price} so'm</TableCell>
                   <TableCell>{i.items}</TableCell>
+                  <TableCell>
+                    <Switch id={`switch-${i.id}`} />
+                  </TableCell>
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
                       <button
@@ -391,7 +397,7 @@ function StoreProducts() {
                       </button>
                       <button
                         onClick={() => handleDelete(i.id)}
-                        className="text-red-500 gap-1 flex items-center text-white px-4 py-1 rounded"
+                        className="text-red-500 gap-1 flex items-center dark:text-white  px-4 py-1 rounded"
                       >
                         <Trash2 className="w-4 h-4" /> Удалить
                       </button>
