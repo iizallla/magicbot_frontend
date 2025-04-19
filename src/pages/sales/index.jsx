@@ -6,23 +6,21 @@ import { TableToExcelReact } from "table-to-excel-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTranslation } from "react-i18next";
 
 
 const Sales = () => {
-    const {t}=useTranslation()
     return <div >
         <div className="flex justify-between">
             <p>
-                {t('sales')}
+                Sales
             </p>
             <div className="flex gap-4">
                 {/* <div className="flex items-center gap-2 bg-blue-500 w-[140px] h-[40px] rounded-lg pl-2 hover:bg-blue-800">
@@ -35,7 +33,9 @@ const Sales = () => {
                     sheet="sheet 1"
                     format="xlsx"
                 >
-                    <img src={ExcelIcon} className="w-12 h-12 object-contain" alt="excel" />
+                    <button className="border w-14 h-11 pl-2 rounded-md bg-gray-100">
+                        <img src={ExcelIcon} className="w-10 h-10 object-contain " alt="excel" />
+                     </button>
                 </TableToExcelReact>
             </div>
         </div>
