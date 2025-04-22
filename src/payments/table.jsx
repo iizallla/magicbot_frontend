@@ -1,5 +1,5 @@
 import * as React from "react";
-import FilterIcon from '../assets/filter.png'
+import FilterIcon from '../assets/filter.png';
 import { useState } from 'react';
 
 import {
@@ -8,12 +8,10 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
+
+
 import {
-  //   ColumnDef,
-  //   ColumnFiltersState,
-  //   SortingState,
-  //   VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -21,6 +19,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -43,52 +42,90 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useTranslation } from "react-i18next";
+import { Badge } from "@/components/ui/badge"
 
+export function BadgeDemo() {
+  
+}
 
 const data = [
   {
-    id: "1",
+    id: "123",
     amount: 316,
     status: "success",
-    name:"Bakhriddinxoja",
-    financialStatus:"in anticipation",
-    deliveryType:"new",
-    created:"22.08.2023",
+    name: "Bakhriddinxoja",
+    financialStatus: "in anticipation",
+    deliveryType: "new",
+    created: "22.08.2023",
   },
   {
-    id: "2",
+    id: "456",
     amount: 574,
-    status: "failed",
-    name:"Abdulfattoh",
-    financialStatus:"in anticipation",
-    deliveryType:"new",
-    created:"31.09.2023",
+    status: "success",
+    name: "Abdulfattoh",
+    financialStatus: "done",
+    deliveryType: "new",
+    created: "31.09.2023",
   },
   {
-    id: "3",
+    id: "89",
     amount: 5964,
     status: "processing",
-    name:"Abdulfattoh",
-    financialStatus:"in anticipation",
-    deliveryType:"accept",
-    created:"5.09.2022",
+    name: "Abdulfattoh",
+    financialStatus: "in anticipation",
+    deliveryType: "accept",
+    created: "5.09.2022",
   },
-  
-
+  {
+    id: "012",
+    amount: 3424,
+    status: "processing",
+    name: "Ulug`bekf",
+    financialStatus: "failed",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
+  {
+    id: "012",
+    amount: 3424,
+    status: "processing",
+    name: "Ulug`bekf",
+    financialStatus: "failed",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
+  {
+    id: "012",
+    amount: 3424,
+    status: "failed",
+    name: "Ulug`bekf",
+    financialStatus: "failed",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
+  {
+    id: "012",
+    amount: 3424,
+    status: "success",
+    name: "Ulug`bekf",
+    financialStatus: "success",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
 
 ];
 
-export const columns = [
+
+const columns = [
   {
-    id: "select",
-    header: ({ row }) => "ID",
-    cell: ({ row }) =>"# "+Number(Number(row.id)+1),
-    enableSorting: false,
-    enableHiding: false,
+    accessorKey: "id",
+    header: "ID",
+    cell: ({ row }) => <div className="font-medium">{"# " + row.getValue("id")}</div>
   },
   {
     accessorKey: "created",
-    header: "created",
+    header: "Created",
     cell: ({ row }) => (
       <div className="capitalize">{row.getValue("created")}</div>
     ),
@@ -97,7 +134,7 @@ export const columns = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("status")}</div>
+      <div className={ `${row.getValue("status") === 'failed'? "bg-red-400" : row.getValue("status")  ==="success" ?"bg-green-500": "bg-yellow-500" }  p-1.5 w-fit text-white rounded-md cursor-pointer` }>{row.getValue("status")}</div>
     ),
   },
   {
@@ -105,15 +142,14 @@ export const columns = [
     header: ({ column }) => {
       return (
         <Button
-           variant="ghost"
-           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-         Name
-          
+          Name
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("name")}</div>,
+    cell: ({ row }) => <div className="camelcase font-medium">{row.getValue("name")}</div>,
   },
   {
     accessorKey: "financialStatus",
@@ -123,14 +159,14 @@ export const columns = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          financialStatus
-         
+          Financial Status
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("financialStatus")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase pl-4">{row.getValue("financialStatus")}</div>
+    ),
   },
- 
   {
     accessorKey: "deliveryType",
     header: ({ column }) => {
@@ -139,110 +175,96 @@ export const columns = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-       Delivery Type
-          
+          Delivery Type
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("deliveryType")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase pl-10">{row.getValue("deliveryType")}</div>
+    ),
   },
+
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: (row) => {
+      console.log(row);
+      
+      return <div className="text-right pr-12">Amount</div>
+    },
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
-
-      // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
       }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  },
-  {
-    id: "actions",
-    enableHiding: false,
-    cell: ({ row }) => {
-      const payment = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      return <div className=" text-right pr-12 font-medium">{formatted}</div>;
     },
   },
 ];
-export default function () {
-  const [tableStatus, setTableStatus] = useState('#');
-}
+
 export function DataTableDemo() {
+  const { t:translate } = useTranslation();
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
-  const [columnVisibility, setColumnVisibility] = React.useState([]);
+  const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
-
   const table = useReactTable({
     data,
     columns,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
     },
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   const onSalesFilterChange = (value) => {
-    let a=  data.filter((item,index)=>item.status.includes(value))
-    console.log(a);
-    
-  }
+    if (value === "#") {
+      table.getColumn("status")?.setFilterValue("");
+    } else {
+      table.getColumn("status")?.setFilterValue(value);
+    }
+  };
 
   return (
     <div className="w-full">
       <div className="flex items-center py-4 justify-between">
         <Input
           placeholder="Filter name and id..."
-          value={table.getColumn("id")?.getFilterValue() ?? ""}
-          onChange={(event) =>
-            table.getColumn("id")?.setFilterValue(event.target.value)
-          }
+          value={table.getColumn("name")?.getFilterValue() ?? ""}
+          onChange={(event) => {
+            const value = event.target.value;
+            if (value.startsWith(" ")) {
+              const value = value.slice(1).trim();
+              table.getColumn("name")?.setFilterValue("");
+            } else {
+              table.getColumn("name")?.setFilterValue(value);
+            }
+            
+          }}
           className="max-w-sm"
         />
         <div className="flex gap-5">
           <Select onValueChange={onSalesFilterChange}>
             <SelectTrigger className="w-[80px]">
-              <img src={FilterIcon} className="w-5 h-5 object-contain" alt="filter" />
+              <img
+                src={FilterIcon}
+                className="w-5 h-5 object-contain"
+                alt="filter"
+              />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="success">Success</SelectItem>
+              <SelectItem value="success">
+              </SelectItem>
               <SelectItem value="processing">Processing</SelectItem>
               <SelectItem value="failed">Failed</SelectItem>
               <SelectItem value="#">Reset</SelectItem>
@@ -277,24 +299,24 @@ export function DataTableDemo() {
         </div>
       </div>
       <div id="table_sales_list" className="rounded-md border">
-        <Table >
+        <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                    </TableHead>
-                  );
-                })}
-              </TableRow>
-            ))}
+            {table.getHeaderGroups().map((headerGroup) =>
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {  
+                    return (
+                      <TableHead key={header.id}>
+                        {header.isPlaceholder
+                          ? null
+                          : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                      </TableHead>
+                    )
+                  })}
+                </TableRow>
+            )}
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
@@ -305,20 +327,14 @@ export function DataTableDemo() {
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -332,22 +348,6 @@ export function DataTableDemo() {
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
         <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
         </div>
       </div>
     </div>
