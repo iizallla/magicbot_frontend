@@ -62,7 +62,7 @@ const data = [
   {
     id: "456",
     amount: 574,
-    status: "failed",
+    status: "success",
     name: "Abdulfattoh",
     financialStatus: "done",
     deliveryType: "new",
@@ -86,6 +86,34 @@ const data = [
     deliveryType: "accept",
     created: "5.09.2022",
   },
+  {
+    id: "012",
+    amount: 3424,
+    status: "processing",
+    name: "Ulug`bekf",
+    financialStatus: "failed",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
+  {
+    id: "012",
+    amount: 3424,
+    status: "failed",
+    name: "Ulug`bekf",
+    financialStatus: "failed",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
+  {
+    id: "012",
+    amount: 3424,
+    status: "success",
+    name: "Ulug`bekf",
+    financialStatus: "success",
+    deliveryType: "accept",
+    created: "5.09.2022",
+  },
+
 ];
 
 
