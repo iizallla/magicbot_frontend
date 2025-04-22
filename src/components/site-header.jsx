@@ -68,7 +68,7 @@ export function SiteHeader() {
             <SidebarIcon />
           </Button>
           <Separator orientation="vertical" className="mr-2 h-4" />
-          {/* <Breadcrumb className="hidden sm:block">
+          <Breadcrumb className="hidden sm:block">
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink href="#">
@@ -80,7 +80,7 @@ export function SiteHeader() {
                 <BreadcrumbPage>Data Fetching</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
-          </Breadcrumb> */}
+          </Breadcrumb>
         </div>
 
         <div className="flex justify-end items-center gap-4 ">

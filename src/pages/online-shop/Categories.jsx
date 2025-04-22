@@ -10,11 +10,11 @@ import {
 
 import {
   addProduct,
-  updateProduct,
   deleteProduct,
+  updateProduct,
 } from "@/features/categories/Categories";
-import { Delete, Image, Pen, Trash, Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Image, Pen, Trash2 } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
