@@ -8,8 +8,9 @@ import {
   TableRow
 } from "@/components/ui/table";
 
-import { Pen, Trash2 } from "lucide-react";
+import { Pen, Trash2, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
+import AmountCard from "./components/AmountCard";
 
 function StoreProducts() {
   const [products, setProducts] = useState([]);
