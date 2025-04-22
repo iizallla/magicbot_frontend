@@ -1,5 +1,14 @@
-import { Youtube } from "lucide-react";
-import AmountCard from "./components/AmountCard";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
+
+import { Pen, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
 function StoreProducts() {
@@ -171,37 +180,55 @@ function StoreProducts() {
           </div>
         </div>
       )}
-      <div>
-        {products.map((i) => (
-          <div
-            key={i.id}
-            className="flex w-full items-center gap-3 border justify-between bg-gray-100 mt-10 rounded-md p-4"
-          >
-            <div className="flex items-center">
-              <img className="w-[100px]" src={i.img} alt={i.title} />
-              <div className="flex gap-3 items-center ml-4">
-                <p className="font-semibold text-[18px]">{i.title}</p>
-                <p className="ml-6 mr-6">{i.price.toLocaleString()} so'm</p>
-                <p>{i.items}</p>
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => handleEdit(i)}
-                className="bg-yellow-400 text-white px-4 py-1 rounded"
-              >
-                Update
-              </button>
-              <button
-                onClick={() => handleDelete(i.id)}
-                className="bg-red-500 text-white px-4 py-1 rounded"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+
+      {products.length > 0 && (
+        <div className="shadow-xl rounded p-3  dark:bg-[#222122] dark:text-white">
+          <Table>
+            <TableCaption>A list of your recent invoices.</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Image</TableHead>
+                <TableHead>Title</TableHead>
+                <TableHead>Price</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead className="text-right">Tools</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {products.map((i) => (
+                <TableRow key={i.title}>
+                  <TableCell className="font-medium">
+                    <img
+                      className="w-[50px] h-[50px] object-cover"
+                      src={i.imagePreview}
+                      alt={i.title}
+                    />
+                  </TableCell>
+                  <TableCell className="font-medium">{i.title}</TableCell>
+                  <TableCell>{i.price} so'm</TableCell>
+                  <TableCell>{i.items}</TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex gap-2 justify-end">
+                      <button
+                        onClick={() => handleEdit(i)}
+                        className="text-yellow-400 gap-1 flex items-center text-white px-4 py-1 rounded"
+                      >
+                        <Pen className="w-4 h-4" /> Редактировать
+                      </button>
+                      <button
+                        onClick={() => handleDelete(i.id)}
+                        className="text-red-500 gap-1 flex items-center text-white px-4 py-1 rounded"
+                      >
+                        <Trash2 className="w-4 h-4" /> Удалить
+                      </button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
     </>
   );
 }

@@ -14,4 +14,21 @@
   "accept":"принимать",
   "Columns":"Столбцы",
   "sales":"продажи"
+  "Dashboard": "Админ панель",
+  "Online Shop": "Онлайн магазин",
+  "Users": "Пользователи",
+  "Sales": "Продажи",
+  "Marketing": "Маркетинг",
+  "Reviews": "Отзывы",
+  "Loyalty Program": "Программа лояльности",
+  "Analitics": "Аналитика",
+  "Paying system": "Платежная система",
+  "Delivering methods": "Способы доставки",
+  "Branches": "Филиалы",
+  "Clients": "Клиенты",
+  "Active Users": "Активные пользователи",
+  "Non active Users": "Неактивные пользователи",
+  "Uzbek Users": "Узбекские пользователи",
+  "Russian Users": "Русские пользователи"
+
 }

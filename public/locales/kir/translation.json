@@ -1,3 +1,14 @@
 {
-  "Clients": "Klientlar"
+  "Dashboard": "Админ Панел",
+  "Online Shop": "Онлайн Дўкон",
+  "Users": "Фойдаланувчилар",
+  "Sales": "Сотувлар",
+  "Marketing": "Маркетинг",
+  "Reviews": "Шарҳлар",
+  "Loyalty Program": "Содиқлик дастури",
+  "Analitics": "Таҳлиллар",
+  "Paying system": "Тўлов тизими",
+  "Delivering methods": "Етказиб бериш усуллари",
+  "Branches": "Филиаллар",
+  "Support": ""
 }
