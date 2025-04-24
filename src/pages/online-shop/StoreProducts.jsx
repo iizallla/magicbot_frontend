@@ -209,67 +209,89 @@ function StoreProducts() {
       </div>
 
       {showForm && (
-        <div className="bg-white p-6 border rounded shadow mb-10  dark:bg-[#222122] dark:text-white">
-          <label className="block font-semibold mb-1">Наименование</label>
-          <input
-            name="title"
-            type="text"
-            value={productForm.title}
-            onChange={handleChange}
-            className="dark:placeholder:text-white w-full border px-3 py-2 placeholder:text-black  text-black rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
-            placeholder="Введите наименование"
-          />
-          <label className="block font-semibold mb-1">Описание</label>
-          <ReactQuill
-            theme="snow"
-            value={productForm.description}
-            onChange={(value) =>
-              setProductForm({ ...productForm, description: value })
-            }
-            className="mb-4"
-          />
-          <label className="block font-semibold mb-1">Фото (1080x1440)</label>
-          <input
-            type="file"
-            className="dark:placeholder:text-white placeholder:text-black dark:bg-[#222122] dark:text-white placeholder:text-white"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-          {productForm.imagePreview && (
-            <img
-              src={productForm.imagePreview}
-              alt="Preview"
-              className="mt-2 mb-4 w-40 border rounded"
+        <div className="bg-white dark:bg-[#1e1e1e] p-8 border rounded-2xl shadow-xl space-y-6 mb-10 transition-all">
+          {/* Title */}
+          <div>
+            <label className="block font-semibold mb-1">Наименование</label>
+            <input
+              name="title"
+              type="text"
+              value={productForm.title}
+              onChange={handleChange}
+              className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white placeholder:text-gray-400"
+              placeholder="Введите наименование"
             />
-          )}
+          </div>
 
-          <input
-            name="price"
-            type="number"
-            value={productForm.price}
-            onChange={handleChange}
-            className="dark:placeholder:text-white placeholder:text-black w-full border px-3 py-2 rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
-            placeholder="Цена"
-          />
-          <input
-            name="items"
-            type="number"
-            value={productForm.items}
-            onChange={handleChange}
-            className="dark:placeholder:text-white placeholder:text-black w-full border px-3 py-2 rounded mb-4 dark:bg-[#222122] dark:text-white placeholder:text-white"
-            placeholder="Количество"
-          />
-          <div className="bg-white p-6 border rounded shadow mb-10">
-            <label className="block font-semibold mb-2">📹 Видео</label>
-            <div className="border border-dashed border-gray-400 p-4 rounded mb-4">
+          {/* Description */}
+          <div>
+            <label className="block font-semibold mb-1">Описание</label>
+            <ReactQuill
+              theme="snow"
+              value={productForm.description}
+              onChange={(value) =>
+                setProductForm({ ...productForm, description: value })
+              }
+              className="bg-white dark:bg-[#2a2a2a] rounded-md"
+            />
+          </div>
+
+          {/* Image Upload */}
+          <div>
+            <label className="block font-semibold mb-1">Фото (1080x1440)</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="block w-full mb-2"
+            />
+            {productForm.imagePreview && (
+              <img
+                src={productForm.imagePreview}
+                alt="Preview"
+                className="mt-2 w-40 h-auto border rounded-md shadow"
+              />
+            )}
+          </div>
+
+          {/* Price & Quantity */}
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <label className="block font-semibold mb-1">Цена</label>
+              <input
+                name="price"
+                type="number"
+                value={productForm.price}
+                onChange={handleChange}
+                className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white"
+                placeholder="Цена"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1">Количество</label>
+              <input
+                name="items"
+                type="number"
+                value={productForm.items}
+                onChange={handleChange}
+                className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white"
+                placeholder="Количество"
+              />
+            </div>
+          </div>
+
+          {/* Video Upload */}
+          <div className="border-t pt-6">
+            <h3 className="text-lg font-semibold mb-2">📹 Видео</h3>
+            <div className="border border-dashed p-4 rounded-lg bg-gray-50 dark:bg-[#2a2a2a]">
               <input
                 type="file"
                 accept="video/mp4"
                 onChange={handleVideoChange}
+                className="mb-2"
               />
-              <p className="text-sm text-gray-600 mt-2">
-                Рекомендуемый формат: MP4, максимальный размер:{" "}
-                <strong>50MB</strong>
+              <p className="text-sm text-gray-600">
+                Формат: MP4, макс. размер: <strong>50MB</strong>
               </p>
               {videoPreview && (
                 <video
@@ -279,8 +301,11 @@ function StoreProducts() {
                 />
               )}
             </div>
+          </div>
 
-            <h3 className="text-lg font-semibold mt-6 mb-2">Цены</h3>
+          {/* Pricing Section */}
+          <div className="border-t pt-6 space-y-4">
+            <h3 className="text-lg font-semibold">Цены</h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label>Цена продажи</label>
@@ -288,7 +313,7 @@ function StoreProducts() {
                   type="number"
                   value={salePrice}
                   onChange={(e) => setSalePrice(Number(e.target.value))}
-                  className="w-full border px-3 py-2 rounded"
+                  className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 />
               </div>
               <div>
@@ -297,34 +322,35 @@ function StoreProducts() {
                   type="number"
                   value={comparePrice}
                   onChange={(e) => setComparePrice(Number(e.target.value))}
-                  className="w-full border px-3 py-2 rounded"
+                  className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 />
-              </div>
-              <div className="col-span-2 flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={taxable}
-                  onChange={(e) => setTaxable(e.target.checked)}
-                />
-                <label>Взимать налог с этого товара</label>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mt-4">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={taxable}
+                onChange={(e) => setTaxable(e.target.checked)}
+              />
+              <label>Взимать налог с этого товара</label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <label>Цена прихода</label>
                 <input
                   type="number"
                   value={costPrice}
                   onChange={(e) => setCostPrice(Number(e.target.value))}
-                  className="w-full border px-3 py-2 rounded"
+                  className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 />
               </div>
               <div>
                 <label>Прибыль</label>
                 <input
                   type="number"
-                  value={profit.toFixed(10)}
+                  value={profit.toFixed(2)}
                   readOnly
                   className="w-full border bg-gray-100 px-3 py-2 rounded"
                 />
@@ -340,16 +366,18 @@ function StoreProducts() {
               </div>
             </div>
           </div>
-          <div className="flex gap-4">
+
+          {/* Buttons */}
+          <div className="flex gap-4 pt-4">
             <button
               onClick={handleSave}
-              className="bg-green-600 text-white px-6 py-2 rounded"
+              className="bg-green-600 hover:bg-green-700 transition text-white px-6 py-2 rounded-lg"
             >
               {isEditing ? "Обновить" : "Сохранить"}
             </button>
             <button
               onClick={() => setShowForm(false)}
-              className="bg-gray-300 text-black px-6 py-2 rounded"
+              className="bg-gray-300 hover:bg-gray-400 text-black px-6 py-2 rounded-lg"
             >
               Отмена
             </button>
