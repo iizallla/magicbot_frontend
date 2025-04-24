@@ -1,5 +1,5 @@
 import * as React from "react";
-import FilterIcon from "../assets/filter.png";
+import FilterIcon from "../../../assets/filter.png";
 import { useState } from "react";
 
 import {
@@ -200,34 +200,29 @@ const columns = [
       return <div className="text-right pr-12">Tool</div>;
     },
     cell: ({ row }) => {
+      // const formatted = new Intl.NumberFormat("en-US", {
+      //   style: "currency",
+      //   currency: "USD",
+      // }).format(amount);
       return (
-        <div className="text-right font-medium w-10">
-          <Select>
-            <SelectTrigger className="w-[40px] text-right justify-end">
-              <p>...</p>
-            </SelectTrigger>
-            <SelectContent>
-              <Link to={`/sales/${row.getValue("name")}`}>Sotuvlari</Link>
-            </SelectContent>
-          </Select>
+        <div className=" text-right pr-12 font-medium">
+          <Link to={`/sales/${row.getValue("name")}`}>Info</Link>
         </div>
       );
     },
   },
 ];
 
-export function DataTableDemo() {
+function UsersSlug() {
   const { t: translate } = useTranslation();
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const location = useLocation();
-  let mainPage = location.pathname.split("/")[1];
-  let id = location.pathname.split("/")[2];
-  React.useEffect(() => {
-    table.getColumn("name")?.setFilterValue(id);
-  }, []);
+  const Routename = useLocation();
+  const inputlog = Routename.pathname.split("/");
+  console.log(inputlog);
+
   const table = useReactTable({
     data,
     columns,
@@ -260,6 +255,8 @@ export function DataTableDemo() {
       <div className="flex items-center py-4 justify-between">
         <Input
           placeholder="Filter name and id..."
+          value
+          // value={table.getColumn("name")?.getFilterValue() ?? ""}
           onChange={(event) => {
             const value = event.target.value;
             if (value.startsWith(" ")) {
@@ -281,7 +278,7 @@ export function DataTableDemo() {
               />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="success">Succes</SelectItem>
+              <SelectItem value="success"></SelectItem>
               <SelectItem value="processing">Processing</SelectItem>
               <SelectItem value="failed">Failed</SelectItem>
               <SelectItem value="#">Reset</SelectItem>
@@ -375,3 +372,5 @@ export function DataTableDemo() {
     </div>
   );
 }
+
+export default UsersSlug;
