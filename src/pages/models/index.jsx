@@ -41,7 +41,7 @@ function Models() {
       <DatePickerDemo />
       <div>
         <p className="mb-10">{t("Clients")}</p>
-       
+
         <div className="flex justify-between">
           {data.map((i) => (
             <UsersInfo

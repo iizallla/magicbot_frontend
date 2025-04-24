@@ -1,6 +1,6 @@
 import * as React from "react";
-import FilterIcon from '../assets/filter.png';
-import { useState } from 'react';
+import FilterIcon from "../assets/filter.png";
+import { useState } from "react";
 
 import {
   Select,
@@ -9,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 
 import {
   flexRender,
@@ -43,11 +42,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useTranslation } from "react-i18next";
-import { Badge } from "@/components/ui/badge"
-
-export function BadgeDemo() {
-  
-}
 
 const data = [
   {
@@ -113,15 +107,15 @@ const data = [
     deliveryType: "accept",
     created: "5.09.2022",
   },
-
 ];
-
 
 const columns = [
   {
     accessorKey: "id",
     header: "ID",
-    cell: ({ row }) => <div className="font-medium">{"# " + row.getValue("id")}</div>
+    cell: ({ row }) => (
+      <div className="font-medium">{"# " + row.getValue("id")}</div>
+    ),
   },
   {
     accessorKey: "created",
@@ -134,7 +128,17 @@ const columns = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => (
-      <div className={ `${row.getValue("status") === 'failed'? "bg-red-400" : row.getValue("status")  ==="success" ?"bg-green-500": "bg-yellow-500" }  p-1.5 w-fit text-white rounded-md cursor-pointer` }>{row.getValue("status")}</div>
+      <div
+        className={`${
+          row.getValue("status") === "failed"
+            ? "bg-red-400"
+            : row.getValue("status") === "success"
+            ? "bg-green-500"
+            : "bg-yellow-500"
+        }  p-1.5 w-fit text-white rounded-md cursor-pointer`}
+      >
+        {row.getValue("status")}
+      </div>
     ),
   },
   {
@@ -149,7 +153,9 @@ const columns = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="camelcase font-medium">{row.getValue("name")}</div>,
+    cell: ({ row }) => (
+      <div className="camelcase font-medium">{row.getValue("name")}</div>
+    ),
   },
   {
     accessorKey: "financialStatus",
@@ -188,8 +194,8 @@ const columns = [
     accessorKey: "amount",
     header: (row) => {
       console.log(row);
-      
-      return <div className="text-right pr-12">Amount</div>
+
+      return <div className="text-right pr-12">Amount</div>;
     },
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
@@ -203,7 +209,7 @@ const columns = [
 ];
 
 export function DataTableDemo() {
-  const { t:translate } = useTranslation();
+  const { t: translate } = useTranslation();
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [columnVisibility, setColumnVisibility] = React.useState({});
@@ -249,7 +255,6 @@ export function DataTableDemo() {
             } else {
               table.getColumn("name")?.setFilterValue(value);
             }
-            
           }}
           className="max-w-sm"
         />
@@ -263,8 +268,7 @@ export function DataTableDemo() {
               />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="success">
-              </SelectItem>
+              <SelectItem value="success"></SelectItem>
               <SelectItem value="processing">Processing</SelectItem>
               <SelectItem value="failed">Failed</SelectItem>
               <SelectItem value="#">Reset</SelectItem>
@@ -301,22 +305,22 @@ export function DataTableDemo() {
       <div id="table_sales_list" className="rounded-md border">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) =>
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => {  
-                    return (
-                      <TableHead key={header.id}>
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-                      </TableHead>
-                    )
-                  })}
-                </TableRow>
-            )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
@@ -327,14 +331,20 @@ export function DataTableDemo() {
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -347,8 +357,7 @@ export function DataTableDemo() {
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
-        <div className="space-x-2">
-        </div>
+        <div className="space-x-2"></div>
       </div>
     </div>
   );
