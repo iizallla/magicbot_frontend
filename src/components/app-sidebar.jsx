@@ -208,7 +208,7 @@ const data = {
     },
     {
       title: "Delivering methods",
-      url: "/rewievs",
+      url: "/delivering-methods",
       icon: Truck,
       isActive: true,
       isAccardion: false,
