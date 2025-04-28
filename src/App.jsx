@@ -11,6 +11,7 @@ import SalesSettings from "./pages/SalesSettings";
 import Reviews from "./pages/reviews";
 import ProductsCategories from "./pages/online-shop/Categories";
 import UsersSlug from "./pages/users/slug";
+import Settings from "./pages/settings";
 
 const isAuthenticated = () => true;
 
@@ -69,6 +70,11 @@ export default function Page() {
           <Route
             path="/rewievs"
             element={<PrivateRoute element={<Reviews />} />}
+          />
+          <Route
+            path="/settings"
+            element={<PrivateRoute element={<Settings
+               />} />}
           />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
