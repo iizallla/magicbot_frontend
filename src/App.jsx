@@ -3,7 +3,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "./components/theme-provider";
-import Users from "./pages/users";
+import Users from "./payments/users";
 import Models from "./pages/models";
 import Sales from "./pages/sales";
 import StoreProducts from "./pages/online-shop/StoreProducts";
