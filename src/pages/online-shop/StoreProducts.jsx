@@ -22,6 +22,7 @@ import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
+import Variations from "./components/Variations";
 
 function StoreProducts() {
   const [videoFile, setVideoFile] = useState(null);
@@ -65,7 +66,7 @@ function StoreProducts() {
   };
   const handleSave = () => {
     const { title, description, price, items, imagePreview } = productForm;
-    if (!title || !description || !price || !items || !imagePreview) {
+    if (!title || !description || !items || !imagePreview) {
       alert("Please fill in all fields.");
       return;
     }
@@ -269,30 +270,6 @@ function StoreProducts() {
             </p>
           </div>
           {/* Price & Quantity */}
-          {/* <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block font-semibold mb-1">Цена</label>
-              <input
-                name="price"
-                type="number"
-                value={productForm.price}
-                onChange={handleChange}
-                className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white"
-                placeholder="Цена"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold mb-1">Количество</label>
-              <input
-                name="items"
-                type="number"
-                value={productForm.items}
-                onChange={handleChange}
-                className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white"
-                placeholder="Количество"
-              />
-            </div>
-          </div> */}
 
           {/* Video Upload */}
           <div className="border-t pt-6">
@@ -326,9 +303,7 @@ function StoreProducts() {
                 <input
                   type="number"
                   placeholder="Цена продажи"
-                  onChange={(e) => {
-                    setSalePrice(Number(e.target.value));
-                  }}
+                  onChange={handleChange}
                   className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 />
               </div>
@@ -398,18 +373,18 @@ function StoreProducts() {
               <input
                 type="text"
                 placeholder="Тип продукта"
-                onChange={(e) => {
-                  setSalePrice(Number(e.target.value));
-                }}
+                // onChange={(e) => {
+                //   setSalePrice(Number(e.target.value));
+                // }}
                 className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
               />
             </div>
             <div>
               <label>Бренд</label>
               <input
-                type="number"
+                type="text"
                 placeholder="Бренд"
-                onChange={(e) => setComparePrice(Number(e.target.value))}
+                // onChange={(e) => setComparePrice(Number(e.target.value))}
                 className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
               />
             </div>
@@ -417,9 +392,8 @@ function StoreProducts() {
               <label className="">Теги</label>
               <input
                 name="items"
-                type="number"
-                value={productForm.items}
-                onChange={handleChange}
+                // value={productForm.items}
+                // onChange={handleChange}
                 className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 placeholder="Теги"
               />
@@ -440,6 +414,7 @@ function StoreProducts() {
               Отмена
             </button>
           </div>
+          <Variations />
         </div>
       )}
 
