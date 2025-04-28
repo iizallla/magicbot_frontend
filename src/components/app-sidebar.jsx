@@ -215,7 +215,7 @@ const data = {
     },
     {
       title: "Branches",
-      url: "/branches",
+      url: "/filials",
       icon: MapPin,
       isActive: true,
       isAccardion: false,
