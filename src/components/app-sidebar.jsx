@@ -14,6 +14,7 @@ import {
   HandCoins,
   Truck,
   MapPin,
+  Settings,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -207,7 +208,7 @@ const data = {
     },
     {
       title: "Delivering methods",
-      url: "/rewievs",
+      url: "/delivering-methods",
       icon: Truck,
       isActive: true,
       isAccardion: false,
@@ -217,6 +218,14 @@ const data = {
       title: "Branches",
       url: "/filials",
       icon: MapPin,
+      isActive: true,
+      isAccardion: false,
+      acardionItems: [],
+    },
+    {
+      title: "Settings",
+      url: "/settings",
+      icon: Settings,
       isActive: true,
       isAccardion: false,
       acardionItems: [],

@@ -12,6 +12,9 @@ import Reviews from "./pages/reviews";
 import ProductsCategories from "./pages/online-shop/Categories";
 import UsersSlug from "./pages/users/slug";
 import Filials from "./pages/filial/FilialTable";
+import Settings from "./pages/settings";
+import Delivering from "./pages/delivering-methods";
+import DeliveringMethods from "./pages/delivering-methods";
 
 const isAuthenticated = () => true;
 
@@ -75,10 +78,14 @@ export default function Page() {
             path="/filials"
             element={<PrivateRoute element={<Filials />} />}
           />
-          {/* <Route
-            path="/filial/add"
-            element={<PrivateRoute element={<AddFilialForm />} />}
-          /> */}
+          <Route
+            path="/settings"
+            element={<PrivateRoute element={<Settings />} />}
+          />
+          <Route
+            path="/delivering-methods"
+            element={<PrivateRoute element={<DeliveringMethods />} />}
+          />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
       </ThemeProvider>
