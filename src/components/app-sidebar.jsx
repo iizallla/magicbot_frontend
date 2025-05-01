@@ -30,6 +30,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { useTranslation } from "react-i18next";
 
 const data = {
   user: {
@@ -247,9 +248,10 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const { t } = useTranslation();
   return (
     <Sidebar
-      className="top-[--header-height] !h-[calc(100svh-var(--header-height))] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-rounded"
+      className="top-[--header-height] !h-[calc(100svh-var(--header-height))] hover:overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-rounded"
       {...props}
     >
       <SidebarHeader>
@@ -265,7 +267,7 @@ export function AppSidebar({ ...props }) {
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Best Buy</span>
-                  <span className="truncate text-xs">Dashboard</span>
+                  <span className="truncate text-xs">{t("Dashboard")}</span>
                 </div>
               </a>
             </SidebarMenuButton>
