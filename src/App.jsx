@@ -11,6 +11,7 @@ import SalesSettings from "./pages/SalesSettings";
 import Reviews from "./pages/reviews";
 import ProductsCategories from "./pages/online-shop/Categories";
 import UsersSlug from "./pages/users/slug";
+import Filials from "./pages/filial/FilialTable";
 import Settings from "./pages/settings";
 import Delivering from "./pages/delivering-methods";
 import DeliveringMethods from "./pages/delivering-methods";
@@ -72,6 +73,10 @@ export default function Page() {
           <Route
             path="/rewievs"
             element={<PrivateRoute element={<Reviews />} />}
+          />
+          <Route
+            path="/filials"
+            element={<PrivateRoute element={<Filials />} />}
           />
           <Route
             path="/settings"
