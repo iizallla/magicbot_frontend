@@ -198,7 +198,7 @@ function Filials() {
                       <span className="text-green-500">Faol</span>
                     ) : (
                       <span className="text-red-500">Nofaol</span>
-                    )} */}
+                      )} */}
                     <Switch id={`switch-${f.id}`} />
                   </TableCell>
                   <TableCell className="text-right">
