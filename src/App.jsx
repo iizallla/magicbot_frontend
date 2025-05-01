@@ -15,6 +15,7 @@ import Filials from "./pages/filial/FilialTable";
 import Settings from "./pages/settings";
 import Delivering from "./pages/delivering-methods";
 import DeliveringMethods from "./pages/delivering-methods";
+import Promocodes from "./pages/promocodes";
 
 const isAuthenticated = () => true;
 
@@ -81,6 +82,10 @@ export default function Page() {
           <Route
             path="/settings"
             element={<PrivateRoute element={<Settings />} />}
+          />
+          <Route
+            path="/marketing/promocodes"
+            element={<PrivateRoute element={<Promocodes />} />}
           />
           <Route
             path="/delivering-methods"
