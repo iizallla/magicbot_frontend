@@ -37,6 +37,8 @@ import {
 } from "@/components/ui/table";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
+import ExcelIcon from "../assets/excel.png";
+import { TableToExcelReact } from "table-to-excel-react";
 
 const data = [
   {
@@ -153,23 +155,6 @@ const columns = [
     ),
   },
   {
-    accessorKey: "deliveryType",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Delivery Type
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="lowercase pl-10">{row.getValue("deliveryType")}</div>
-    ),
-  },
-
-  {
     accessorKey: "amount",
     header: (row) => {
       console.log(row);
@@ -185,9 +170,32 @@ const columns = [
       return <div className=" text-right pr-12 font-medium">{formatted}</div>;
     },
   },
+
+  {
+    accessorKey: "tool",
+    header: (row) => {
+      console.log(row);
+
+      return <div className="text-right pr-12">Tool</div>;
+    },
+    cell: ({ row }) => {
+      return (
+        <div className="!text-right font-medium flex justify-end pr-10">
+          <Select>
+            <SelectTrigger className="w-[40px] text-center text-right">
+              <p>...</p>
+            </SelectTrigger>
+            <SelectContent>
+              <Link to={`/sales/${row.getValue("name")}`}>Sotuvlari</Link>
+            </SelectContent>
+          </Select>
+        </div>
+      );
+    },
+  },
 ];
 
-export function DataTableDemo() {
+function Users() {
   const { t: translate } = useTranslation();
   const [sorting, setSorting] = React.useState([]);
   const [columnFilters, setColumnFilters] = React.useState([]);
@@ -228,6 +236,29 @@ export function DataTableDemo() {
 
   return (
     <div className="w-full">
+      <div className="flex justify-between">
+        <p>Users</p>
+        <div className="flex gap-4">
+          {/* <div className="flex items-center gap-2 bg-blue-500 w-[140px] h-[40px] rounded-lg pl-2 hover:bg-blue-800">
+                <Youtube className="w-[15px] h-[18px] text-white "></Youtube>
+                <button className="text-white" >Rukovodstva</button>
+            </div> */}
+          <TableToExcelReact
+            table="table_sales_list"
+            fileName="myFile"
+            sheet="sheet 1"
+            format="xlsx"
+          >
+            <button className="border w-14 h-11 pl-2 rounded-md bg-gray-100">
+              <img
+                src={ExcelIcon}
+                className="w-10 h-10 object-contain "
+                alt="excel"
+              />
+            </button>
+          </TableToExcelReact>
+        </div>
+      </div>
       <div className="flex items-center py-4 justify-between">
         <Input
           placeholder="Filter name and id..."
@@ -346,3 +377,5 @@ export function DataTableDemo() {
     </div>
   );
 }
+
+export default Users;

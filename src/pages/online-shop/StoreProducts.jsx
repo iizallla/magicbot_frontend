@@ -16,12 +16,13 @@ import {
   deleteProduct,
 } from "@/features/products/Products";
 
-import { Delete, Pen, Trash, Trash2 } from "lucide-react";
+import { Delete, Image, Pen, Trash, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
+import Variations from "./components/Variations";
 
 function StoreProducts() {
   const [videoFile, setVideoFile] = useState(null);
@@ -65,7 +66,7 @@ function StoreProducts() {
   };
   const handleSave = () => {
     const { title, description, price, items, imagePreview } = productForm;
-    if (!title || !description || !price || !items || !imagePreview) {
+    if (!title || !description || !items || !imagePreview) {
       alert("Please fill in all fields.");
       return;
     }
@@ -237,48 +238,38 @@ function StoreProducts() {
           </div>
 
           {/* Image Upload */}
-          <div>
+          <div className="border rounded p-4 flex flex-col items-center text-center">
             <label className="block font-semibold mb-1">Фото (1080x1440)</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="block w-full mb-2"
-            />
-            {productForm.imagePreview && (
-              <img
-                src={productForm.imagePreview}
-                alt="Preview"
-                className="mt-2 w-40 h-auto border rounded-md shadow"
+            <div className="relative w-80 h-40 border border-dashed rounded flex items-center justify-center bg-gray-50">
+              {productForm.imagePreview ? (
+                <img
+                  src={productForm.imagePreview}
+                  alt="Preview"
+                  className="w-full h-full object-cover rounded"
+                />
+              ) : (
+                <Image className="w-[160px] h-[120px] text-gray-500" />
+              )}
+              <label
+                htmlFor="image-upload"
+                className="absolute top-1 right-1 bg-white p-1 rounded-full shadow cursor-pointer"
+              >
+                <Pen className="w-4 h-4 text-gray-600" />
+              </label>
+              <input
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
               />
-            )}
+            </div>
+            <p className="text-xs text-gray-500 mt-2">
+              Принимаются только файлы изображений *.png, *.jpg и *.jpeg
+              размером не более 2 мегабайт.
+            </p>
           </div>
-
           {/* Price & Quantity */}
-          <div className="grid grid-cols-2 gap-6">
-            <div>
-              <label className="block font-semibold mb-1">Цена</label>
-              <input
-                name="price"
-                type="number"
-                value={productForm.price}
-                onChange={handleChange}
-                className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white"
-                placeholder="Цена"
-              />
-            </div>
-            <div>
-              <label className="block font-semibold mb-1">Количество</label>
-              <input
-                name="items"
-                type="number"
-                value={productForm.items}
-                onChange={handleChange}
-                className="w-full border px-4 py-2 rounded-lg dark:bg-[#2a2a2a] dark:text-white"
-                placeholder="Количество"
-              />
-            </div>
-          </div>
 
           {/* Video Upload */}
           <div className="border-t pt-6">
@@ -306,13 +297,13 @@ function StoreProducts() {
           {/* Pricing Section */}
           <div className="border-t pt-6 space-y-4">
             <h3 className="text-lg font-semibold">Цены</h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <label>Цена продажи</label>
                 <input
                   type="number"
-                  value={salePrice}
-                  onChange={(e) => setSalePrice(Number(e.target.value))}
+                  placeholder="Цена продажи"
+                  onChange={handleChange}
                   className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 />
               </div>
@@ -320,9 +311,20 @@ function StoreProducts() {
                 <label>Цена сравнения</label>
                 <input
                   type="number"
-                  value={comparePrice}
+                  placeholder="Цена сравнения"
                   onChange={(e) => setComparePrice(Number(e.target.value))}
                   className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
+                />
+              </div>
+              <div>
+                <label className="">Количество</label>
+                <input
+                  name="items"
+                  type="number"
+                  value={productForm.items}
+                  onChange={handleChange}
+                  className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
+                  placeholder="Количество"
                 />
               </div>
             </div>
@@ -330,7 +332,6 @@ function StoreProducts() {
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"
-                checked={taxable}
                 onChange={(e) => setTaxable(e.target.checked)}
               />
               <label>Взимать налог с этого товара</label>
@@ -341,7 +342,6 @@ function StoreProducts() {
                 <label>Цена прихода</label>
                 <input
                   type="number"
-                  value={costPrice}
                   onChange={(e) => setCostPrice(Number(e.target.value))}
                   className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
                 />
@@ -366,7 +366,39 @@ function StoreProducts() {
               </div>
             </div>
           </div>
-
+          <p className="mt-10 font-medium text-lg">Детали продукта</p>
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <label>Тип продукта</label>
+              <input
+                type="text"
+                placeholder="Тип продукта"
+                // onChange={(e) => {
+                //   setSalePrice(Number(e.target.value));
+                // }}
+                className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
+              />
+            </div>
+            <div>
+              <label>Бренд</label>
+              <input
+                type="text"
+                placeholder="Бренд"
+                // onChange={(e) => setComparePrice(Number(e.target.value))}
+                className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
+              />
+            </div>
+            <div>
+              <label className="">Теги</label>
+              <input
+                name="items"
+                // value={productForm.items}
+                // onChange={handleChange}
+                className="w-full border px-3 py-2 rounded dark:bg-[#2a2a2a] dark:text-white"
+                placeholder="Теги"
+              />
+            </div>
+          </div>
           {/* Buttons */}
           <div className="flex gap-4 pt-4">
             <button
@@ -382,6 +414,7 @@ function StoreProducts() {
               Отмена
             </button>
           </div>
+          <Variations />
         </div>
       )}
 
