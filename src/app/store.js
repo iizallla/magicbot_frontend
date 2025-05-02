@@ -2,6 +2,7 @@
 import productsReducer from "../features/products/Products";
 import categories from "../features/categories/Categories";
 import filialReducer from "../features/filial/Filial";
+import promocodesReducer from "../features/promocodes/promocodesSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     products: productsReducer,
     categories: categories,
     filial: filialReducer,
+    promocodes: promocodesReducer,
   },
 });
 
