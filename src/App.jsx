@@ -16,6 +16,8 @@ import Settings from "./pages/settings";
 import Delivering from "./pages/delivering-methods";
 import DeliveringMethods from "./pages/delivering-methods";
 import Promocodes from "./pages/promocodes";
+import CreateAccount from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 const isAuthenticated = () => true;
 
@@ -46,8 +48,8 @@ export default function Page() {
     <BrowserRouter>
       <ThemeProvider defaultTheme="light" storageKey="admin-key">
         <Routes>
-          <Route path="/login" element={<h1>Login</h1>} />
-          <Route path="/logout" element={<h1>Logout</h1>} />
+          <Route path="/login" element={<CreateAccount />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/" element={<PrivateRoute element={<Models />} />} />
           <Route path="/users" element={<PrivateRoute element={<Users />} />} />
           <Route path="/sales" element={<PrivateRoute element={<Sales />} />} />
@@ -85,6 +87,10 @@ export default function Page() {
           />
           <Route
             path="/marketing/promocodes"
+            element={<PrivateRoute element={<Promocodes />} />}
+          />
+          <Route
+            path="/marketing/messages"
             element={<PrivateRoute element={<Promocodes />} />}
           />
           <Route
