@@ -6,6 +6,7 @@ const initialState = {
       name: "Novza",
       address: "Yunusobod",
       city: "Tashkent",
+      status: "active",
     },
   ],
 };
@@ -27,11 +28,23 @@ const filialReducer = createSlice({
         };
       }
     },
+    updateProduct: (state, action) => {
+      const index = state.list.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.list[index] = {
+          ...state.list[index],
+          ...action.payload,
+        };
+      }
+    },
     deleteFilial: (state, action) => {
       state.list = state.list.filter((item) => item.id !== action.payload);
     },
   },
 });
 
-export const { addFilial, updateFilial, deleteFilial } = filialReducer.actions;
+export const { addFilial, updateFilial, updateProduct, deleteFilial } =
+  filialReducer.actions;
 export default filialReducer.reducer;

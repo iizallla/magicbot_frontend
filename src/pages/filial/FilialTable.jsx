@@ -11,6 +11,7 @@ import {
   addFilial,
   updateFilial,
   deleteFilial,
+  updateProduct,
 } from "../../features/filial/Filial";
 import { Pen, Trash2, MapPin, Building2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +22,6 @@ import { Switch } from "@/components/ui/switch";
 function Filials() {
   const dispatch = useDispatch();
   const filials = useSelector((state) => state.filial.list);
-
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -30,7 +30,7 @@ function Filials() {
     name: "",
     city: "",
     address: "",
-    status: "active",
+    status: "",
   });
 
   const handleChange = (e) => {
@@ -199,7 +199,16 @@ function Filials() {
                     ) : (
                       <span className="text-red-500">Nofaol</span>
                       )} */}
-                    <Switch id={`switch-${f.id}`} />
+                    <Switch
+                      checked={f.status === "active"}
+                      id={`switch-${f.id}`}
+                      onCheckedChange={(checked) => {
+                        const updatedStatus = checked ? "active" : "inactive";
+                        dispatch(
+                          updateProduct({ ...f, status: updatedStatus })
+                        );
+                      }}
+                    />
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex gap-2 justify-end">
