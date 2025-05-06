@@ -1,3 +1,4 @@
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 
 function Variations() {
@@ -32,7 +33,7 @@ function Variations() {
               value={variation.attribute}
               onChange={(e) => handleChange(index, "attribute", e.target.value)}
               className="w-full border px-3 py-2 rounded"
-              placeholder="например: Размер"
+              placeholder="например: Размер, цвет"
               required
             />
           </div>
@@ -54,7 +55,7 @@ function Variations() {
             onClick={() => removeVariation(index)}
             className="absolute top-2 right-2 text-red-600"
           >
-            🗑️
+            <Trash2 className="text-red-600" />
           </button>
         </div>
       ))}
