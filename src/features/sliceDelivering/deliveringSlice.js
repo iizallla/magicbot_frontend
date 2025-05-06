@@ -1,11 +1,14 @@
+import { Switch } from "@radix-ui/react-switch";
 import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState ={
     list : [
         {
-            title:"sdaf"
-            
+            title:"sdaf",
+            description:"",
+            id:"",
+            status:false,
         }
     ]
 }
