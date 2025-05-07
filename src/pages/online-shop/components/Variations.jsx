@@ -32,7 +32,7 @@ function Variations() {
               type="text"
               value={variation.attribute}
               onChange={(e) => handleChange(index, "attribute", e.target.value)}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full dark:bg-[#2a2a2a] border px-3 py-2 rounded"
               placeholder="например: Размер, цвет"
               required
             />
@@ -44,7 +44,7 @@ function Variations() {
               type="text"
               value={variation.option}
               onChange={(e) => handleChange(index, "option", e.target.value)}
-              className="w-full border px-3 py-2 rounded"
+              className="w-full dark:bg-[#2a2a2a] border px-3 py-2 rounded"
               placeholder="например: M, L, XL"
               required
             />
