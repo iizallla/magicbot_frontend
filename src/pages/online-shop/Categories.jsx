@@ -140,7 +140,7 @@ function ProductsCategories() {
                 <label className="block font-semibold mb-1">
                   Фото (1080x1440)
                 </label>
-                <div className="relative w-40 h-40 border border-dashed rounded flex items-center justify-center bg-gray-50">
+                <div className="relative w-40 h-40 border border-dashed dark:bg-[#2a2a2a]  rounded flex items-center justify-center bg-gray-50">
                   {productForm.imagePreview ? (
                     <img
                       src={productForm.imagePreview}
@@ -148,7 +148,7 @@ function ProductsCategories() {
                       className="w-full h-full object-cover rounded"
                     />
                   ) : (
-                    <Image className="w-[160px] h-[120px] text-gray-500" />
+                    <Image className="w-[160px] dark:text-white h-[120px] text-gray-500" />
                   )}
                   <label
                     htmlFor="image-upload"
@@ -172,9 +172,9 @@ function ProductsCategories() {
               <div className="mt-4 border p-4 rounded mb-6">
                 <label className="block font-semibold mb-1">Статус</label>
                 <div className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-full bg-green-500 inline-block" />
+                  <span className="h-3 w-3  rounded-full bg-green-500 inline-block" />
                   <select
-                    className="border rounded px-3 py-2"
+                    className="border dark:bg-[#2a2a2a] rounded px-3 py-2"
                     value={productForm.status || "active"}
                     onChange={(e) =>
                       setProductForm({ ...productForm, status: e.target.value })

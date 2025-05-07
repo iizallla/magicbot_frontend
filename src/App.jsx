@@ -18,6 +18,8 @@ import DeliveringMethods from "./pages/delivering-methods";
 import Promocodes from "./pages/promocodes";
 import CreateAccount from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Loyality from "./pages/paying-system/Loyality";
+import Tranzactions from "./pages/paying-system/Tranzactions";
 
 const isAuthenticated = () => true;
 
@@ -86,12 +88,20 @@ export default function Page() {
             element={<PrivateRoute element={<Settings />} />}
           />
           <Route
+            path="/loyality/scores"
+            element={<PrivateRoute element={<Loyality />} />}
+          />
+          <Route
             path="/marketing/promocodes"
             element={<PrivateRoute element={<Promocodes />} />}
           />
           <Route
             path="/marketing/messages"
             element={<PrivateRoute element={<Promocodes />} />}
+          />
+          <Route
+            path="/loyality/analitics"
+            element={<PrivateRoute element={<Tranzactions />} />}
           />
           <Route
             path="/delivering-methods"

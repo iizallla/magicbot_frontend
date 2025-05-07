@@ -240,7 +240,7 @@ function StoreProducts() {
           {/* Image Upload */}
           <div className="border rounded p-4 flex flex-col items-center text-center">
             <label className="block font-semibold mb-1">Фото (1080x1440)</label>
-            <div className="relative w-80 h-40 border border-dashed rounded flex items-center justify-center bg-gray-50">
+            <div className="relative w-80 h-40 border border-dashed rounded dark:bg-[#2a2a2a] flex items-center justify-center bg-gray-50">
               {productForm.imagePreview ? (
                 <img
                   src={productForm.imagePreview}
@@ -248,7 +248,7 @@ function StoreProducts() {
                   className="w-full h-full object-cover rounded"
                 />
               ) : (
-                <Image className="w-[160px] h-[120px] text-gray-500" />
+                <Image className="w-[160px] dark:text-white h-[120px] text-gray-500" />
               )}
               <label
                 htmlFor="image-upload"
@@ -352,7 +352,7 @@ function StoreProducts() {
                   type="number"
                   value={profit.toFixed(2)}
                   readOnly
-                  className="w-full border bg-gray-100 px-3 py-2 rounded"
+                  className="w-full border dark:bg-[#2a2a2a] bg-gray-100 px-3 py-2 rounded"
                 />
               </div>
               <div>
@@ -361,7 +361,7 @@ function StoreProducts() {
                   type="text"
                   value={`${margin}%`}
                   readOnly
-                  className="w-full border bg-gray-100 px-3 py-2 rounded"
+                  className="w-full border dark:bg-[#2a2a2a] bg-gray-100 px-3 py-2 rounded"
                 />
               </div>
             </div>
